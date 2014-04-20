@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<!-- 
+    <style name="AppTheme" parent="Theme.Sherlock.Light.DarkActionBar">
+        <item name="homeAsUpIndicator">@drawable/new_indicator</item>
+        <item name="android:homeAsUpIndicator">@drawable/new_indicator</item>
+    </style>
+    
+    <style name="InitScreenTheme" parent="Theme.Sherlock.Light.DarkActionBar">
+        <item name="homeAsUpIndicator">@drawable/new_indicator</item>
+        <item name="android:homeAsUpIndicator">@drawable/new_indicator</item>
+    </style>
+    -->
+    
+    <style name="AppTheme" parent="Theme.Sherlock.Light.DarkActionBar">
+        <item name="actionBarStyle">@style/MyActionBar</item>
+        <item name="android:actionBarStyle">@style/MyActionBar</item>
+        <item name="android:button">@style/MyButton</item>
+        <item name="homeAsUpIndicator">@drawable/new_indicator</item>
+        <item name="android:homeAsUpIndicator">@drawable/new_indicator</item>
+    </style>
+    
+    <style name="MyButton" parent="android:style/Widget.Holo.Light.Button">
+        <item name="android:background">#D3CBCB</item>
+    </style> 
+    
+    <style name="MyActionBar" parent="Widget.Sherlock.Light.ActionBar.Solid.Inverse">   
+		<!-- <item name="android:titleTextStyle">@style/TextAppearance.Sherlock.Widget.ActionBar.Title.Own</item> --> 
+		<item name="android:background">#91191B</item>
+		<item name="background">#91191B</item>
+	</style>
+
+    <!-- <style name="TextAppearance.Sherlock.Widget.ActionBar.Title.Own"
+       parent="@android:style/TextAppearance.Sherlock.Widget.ActionBar.Title"> 
+    	<item name="android:textColor">@android:color/white</item> 
+	</style> -->
+
+    <style name="InitScreenTheme" parent="Theme.Sherlock.Light.NoActionBar">
+        <item name="android:windowBackground">@android:color/black</item>
+        <item name="homeAsUpIndicator">@drawable/new_indicator</item>
+        <item name="android:homeAsUpIndicator">@drawable/new_indicator</item>
+    </style>
+    
+    <style name="laoding_progress_dialog_style">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+    
+    
+    
+
+</resources>

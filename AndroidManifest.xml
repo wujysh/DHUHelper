@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.wujy.dhuhelper"
+    android:versionCode="418"
+    android:versionName="1.5" >
+
+    <uses-sdk
+        android:minSdkVersion="11"
+        android:targetSdkVersion="18" />
+
+	<!-- Push service 运行需要的权限 -->
+	<uses-permission android:name="android.permission.INTERNET"/>
+	<uses-permission android:name="android.permission.READ_PHONE_STATE" />
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+	<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+	<uses-permission android:name="android.permission.WRITE_SETTINGS" />
+	<uses-permission android:name="android.permission.VIBRATE" />
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+	<uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
+	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+	<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme"
+        android:name="DHUHelperApplication" >
+        <activity 
+            android:name=".view.InitScreen"
+            android:launchMode="singleTask"
+            android:theme="@style/InitScreenTheme" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:launchMode="standard" android:name=".view.LoginScreen"></activity>
+        <activity android:launchMode="standard" android:name=".view.UserScreen"></activity>
+        
+        <activity android:launchMode="singleTask" android:name=".view.NewsScreen"></activity>
+        <activity android:launchMode="standard" android:name=".view.WebViewScreen"></activity>
+        
+        <activity android:launchMode="singleTask" android:name=".view.ScoreSearchScreen"></activity>
+        <activity android:launchMode="singleTask" android:name=".view.ScorelistSearchScreen"></activity>
+        <activity android:launchMode="singleTask" android:name=".view.PointSearchScreen"></activity>
+        <activity android:launchMode="singleTask" android:name=".view.ExamListScreen"></activity>
+        <activity android:launchMode="singleTask" android:name=".view.TimeTableScreen"></activity>
+        <activity android:launchMode="singleTask" android:name=".view.CourseChooseScreen"></activity>
+        <activity android:launchMode="singleTask" android:name=".view.StudentInfoScreen"></activity>
+        <activity android:launchMode="singleTask" android:name=".view.CommonQueryScreen"></activity>
+        
+        <activity android:launchMode="singleTask" android:name=".view.BookBorrowScreen"></activity>
+        <activity android:launchMode="singleTask" android:name=".view.BookSearchScreen"></activity>
+        
+        <activity android:launchMode="singleTask" android:name=".view.PreferenceScreen"></activity>
+        <activity android:launchMode="singleTask" android:name=".view.CheckUpdateScreen"></activity>
+        <activity android:launchMode="singleTask" android:name=".view.AboutScreen"></activity>    
+        
+        <activity android:launchMode="singleTask" android:name=".monitor.MonitorScreen"></activity>
+        
+        <receiver   
+    		android:name=".monitor.BootBroadcast"
+    		android:permission="android.permission.RECEIVE_BOOT_COMPLETED">  
+    		<intent-filter android:priority="2147483647">  
+        		<action android:name="android.intent.action.BOOT_COMPLETED" />
+        		<action android:name="android.intent.action.USER_PRESENT" />
+        		<action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+    		</intent-filter>
+		</receiver>
+		<receiver
+    		android:name=".monitor.AlarmReceiver" >  
+    		<intent-filter android:priority="2147483647">  
+        		<action android:name="wujy.alarm.action" />  
+    		</intent-filter>  
+		</receiver>  
+		
+        <service
+            android:name=".monitor.MonitorService"
+            android:label="CoreService"
+            android:enabled="true"
+     		android:process=":pull" >
+    		<intent-filter>  
+		        <action android:name="com.wujy.dhuhelper.monitor.IMonitorService"/>  
+		    </intent-filter>  
+        </service>
+        
+        <!-- 
+        <activity 
+            android:name=".view.HomePageScreen"
+            android:label="@string/app_name" >
+            android:parentActivityName=".view.NewsScreen" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".view.NewsScreen" />
+        </activity>
+        -->
+        
+        <!-- push service client -->
+		<receiver android:name="com.wujy.dhuhelper.PushMessageReceiver">
+			<intent-filter>
+				<!-- 接收 push 消息 -->
+				<action android:name="com.baidu.android.pushservice.action.MESSAGE" />
+				<!-- 接收 bind、setTags 等 method 的返回结果 -->
+				<action android:name="com.baidu.android.pushservice.action.RECEIVE" />
+				<!-- 可选。接受通知点击事件,和通知自定义内容 -->
+				<action android:name="com.baidu.android.pushservice.action.notification.CLICK"/>
+			</intent-filter>
+		</receiver>
+		
+		<!-- push service start -->
+		<!-- 用于接收系统消息以保证 PushService 正常运行 -->
+		<receiver android:name="com.baidu.android.pushservice.PushServiceReceiver" android:process=":push">
+			<intent-filter>
+				<action android:name="android.intent.action.BOOT_COMPLETED" />
+				<action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+				<action android:name="com.baidu.android.pushservice.action.notification.SHOW" />
+				<action android:name="com.baidu.android.pushservice.action.media.CLICK" />
+			</intent-filter>
+		</receiver>
+		<!-- Push 服务接收客户端发送的各种请求-->
+		<receiver android:name="com.baidu.android.pushservice.RegistrationReceiver" android:process=":push">
+			<intent-filter>
+				<action android:name="com.baidu.android.pushservice.action.METHOD" />
+				<action android:name="com.baidu.android.pushservice.action.BIND_SYNC" />
+			</intent-filter>
+			<intent-filter>
+				<action android:name="android.intent.action.PACKAGE_REMOVED"/>
+				<data android:scheme="package" />
+			</intent-filter>
+		</receiver>
+		<!-- Push 服务 -->
+		<service android:name="com.baidu.android.pushservice.PushService" android:exported="true" android:process=":push"/>
+		
+    </application>
+	
+    <meta-data android:name="api_key" android:value="hrw9hwUY54DIbhYOjvd4kMVr" />
+</manifest>

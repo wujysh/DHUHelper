@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView  
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/menu_all"
+    android:layout_width="fill_parent"  
+    android:layout_height="fill_parent"  
+    android:scrollbars="vertical"  
+    android:fadingEdge="vertical"> 
+
+    <LinearLayout
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="#FEFEFE"
+    android:orientation="vertical" >
+    
+    
+<LinearLayout
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="#FEFEFE"
+    android:orientation="vertical" >
+	
+    <!-- 标题及用户信息 -->
+    <LinearLayout
+        android:id="@+id/menu_header"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="vertical" >
+		
+	    <TextView
+	        android:id="@+id/menu_title"
+	        android:layout_width="match_parent"
+	        android:layout_height="50dp"
+	        android:gravity="center_vertical|center"
+	        android:background="@drawable/btn_group_check"
+	        android:padding="10dp"
+	        android:text="@string/menu2_title"
+	        android:textColor="#91191B"
+	        android:textAppearance="@android:style/TextAppearance.Medium" />
+
+	    <LinearLayout
+		    android:id="@+id/menu_user"
+		    android:layout_width="match_parent"
+		    android:layout_height="50dp"
+		    android:background="@drawable/menu"
+		    android:orientation="horizontal" >
+		
+		    <ImageView
+		        android:id="@+id/menu_icon_user"
+		        android:layout_width="50dp"
+		        android:layout_height="50dp"
+		        android:padding="10dp"
+		        android:src="@drawable/ic_action_person" />
+		
+		    <TextView
+		        android:id="@+id/menu_title_user"
+		        android:layout_width="0dp"
+		        android:layout_height="match_parent"
+		        android:layout_weight="1"
+		        android:gravity="center_vertical"
+		        android:paddingBottom="10dp"
+		        android:paddingLeft="0dp"
+		        android:paddingTop="10dp"
+		        android:text="@string/menu_user"
+		        android:textAppearance="@android:style/TextAppearance.Medium"
+		        android:textColor="@android:color/secondary_text_light" />
+
+	
+		</LinearLayout>
+    </LinearLayout>
+</LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="20dp" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+            
+            <TextView
+                android:id="@+id/user_jw_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/menu_jwc"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/red" />
+            
+            <TextView
+                android:id="@+id/user_jw_status"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:layout_marginLeft="30dp"
+                android:text="未登录"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/blue" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/user_jw_change"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="登录" />
+
+        <TextView
+	        android:id="@+id/user_jw_info"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_marginTop="10dp"
+	        android:minHeight="40dp"
+	        android:gravity="center_vertical|center"
+	        android:background="#FAE2E3"
+	        android:text="姓名：吴嘉晔  学号：121320135"
+	        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="20dp" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+            
+            <TextView
+                android:id="@+id/user_lib_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/menu_library"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/red" />
+            
+            <TextView
+                android:id="@+id/user_lib_status"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:layout_marginLeft="30dp"
+                android:text="未登录"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/blue" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/user_lib_change"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="登录" />
+
+        <TextView
+	        android:id="@+id/user_lib_info"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_marginTop="10dp"
+	        android:minHeight="40dp"
+	        android:gravity="center_vertical|center"
+	        android:background="#FAE2E3"
+	        android:text="姓名：吴嘉晔  学号：121320135"
+	        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    </LinearLayout>
+</LinearLayout>
+</ScrollView>

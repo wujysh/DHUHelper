@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@android:color/white" >
+
+    <RelativeLayout
+        android:id="@+id/login_login_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_margin="14dp" >
+
+        <LinearLayout
+            android:id="@+id/login_edit"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_margin="10dip"
+            android:background="@drawable/border"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="40dp"
+                android:background="@drawable/border"
+                android:gravity="center_vertical"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    
+                    android:gravity="center_vertical|right"
+                    android:text="学    号:" />
+
+                <EditText
+                    android:id="@+id/username"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dip"
+                    android:layout_weight="2"
+                    android:background="#00000000"
+                    android:gravity="center_vertical|left"
+                    android:numeric="integer"
+                    android:paddingBottom="5dip"
+                    android:paddingTop="5dip" >
+
+                    <requestFocus android:layout_width="wrap_content" />
+
+                </EditText>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="40dp"
+                android:background="@drawable/border"
+                android:gravity="center_vertical"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical|right"
+                    android:text="密    码:" />
+
+                <EditText
+                    android:id="@+id/password"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dip"
+                    android:layout_weight="2"
+                    android:background="#00000000"
+                    android:gravity="center_vertical|left"
+                    android:paddingBottom="5dip"
+                    android:paddingTop="5dip"
+                    android:password="true" />
+            </LinearLayout>
+        </LinearLayout>
+
+        
+
+        <LinearLayout
+            android:id="@+id/linearLayout1"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/login_edit"
+            android:layout_marginBottom="5dip"
+            android:layout_marginTop="10dip" >
+
+            <Button
+                android:id="@+id/login_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="40dip"
+                android:layout_marginLeft="30dip"
+                android:layout_marginRight="30dip"
+                android:layout_weight="1.0"
+                android:background="#F2B7B8"
+                android:gravity="center"
+                android:text="登    陆"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@android:color/secondary_text_light" />
+
+        </LinearLayout>
+        
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/check_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/login_login_edit"
+        android:layout_gravity="center_vertical|center"
+        android:paddingLeft="30dp"
+        android:orientation="vertical" >
+		
+        <LinearLayout 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+	        <CheckBox
+	            android:id="@+id/remember_id"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:checked="true"
+	            android:gravity="center_vertical|left"
+	            
+	            android:text="记住学号"
+	            android:textAppearance="?android:attr/textAppearanceSmall" />
+	
+	        <CheckBox
+	            android:id="@+id/remember_password"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:checked="true"
+	            android:layout_marginLeft="20dp"
+	            android:layout_marginRight="40dip"
+	            android:gravity="center_vertical|right"
+	            android:text="记住学号和密码"
+	            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+		</LinearLayout>
+        
+        <LinearLayout 
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp" >
+            
+			<CheckBox
+			    android:id="@+id/auto_login"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:checked="true"
+			    android:gravity="center_vertical|center"
+			    android:text="自动登录"
+			    android:textAppearance="?android:attr/textAppearanceSmall" />
+			
+			<Button
+                android:id="@+id/clear_user"
+                android:layout_width="wrap_content"
+                android:layout_height="40dip"
+                android:layout_marginLeft="30dip"
+                android:layout_marginRight="40dip"
+                android:layout_weight="1.0"
+                android:background="#F1F1F1"
+                android:gravity="center_vertical|center"
+                android:text="清除账户信息"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@android:color/secondary_text_light" />
+			
+        </LinearLayout>
+        
+    </LinearLayout>
+    
+   
+
+</RelativeLayout>

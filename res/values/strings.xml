@@ -1,0 +1,59 @@
+<resources>
+
+    <string name="app_name">东华助手</string>
+    
+    <string name="cancel">取消</string>
+    <string name="confirm">确定</string>
+    <string name="download">下载</string>
+    <string name="retry">重试</string>
+    <string name="wait">等待</string>
+    <string name="quit">退出</string>
+    <string name="tishi">提示</string>
+    
+    <string name="login">登录</string>
+    <string name="logout">注销</string>
+    <string name="logged">已登陆</string>
+    <string name="unlogged">未登陆</string>
+    
+    <string name="none_net">未连接互联网,请打开网络连接!</string>
+    <string name="net_error">网络不稳定，正在连接，请稍候...\n如果已经加载完毕，请点击取消</string>
+    <string name="other_errors">遇到未知错误</string>
+    <string name="password_error">账号/密码错误</string>
+    <string name="server_error">服务器连接失败</string>
+    <string name="loading">正在加载，请稍候...</string>
+	
+	<!-- <string name="listview_bg_color">#F9F9F9</string>
+	<string name="button_bg_color">#D3CBCB</string>
+	<string name="info_bg_color">#F2B7B8</string>
+	<string name="actionbar_bg_color">#91191B</string> -->
+	
+	<string name="menu_title">东华助手</string>
+	<string name="menu_user">账户信息</string>
+	
+	<string name="menu_news">新闻信息</string>
+	<string name="menu_dhxw">东华新闻</string>
+	<string name="menu_xngg">校内公告</string>
+	<string name="menu_jwxx">教务信息</string>
+    
+	<string name="menu_jwc">教务处</string>
+	<string name="menu_score_search">成绩查询</string>
+	<string name="menu_scorelist_search">学生个人成绩单</string>
+	<string name="menu_point_search">绩点查询</string>
+	<string name="menu_exam_search">考场(补考)查询</string>
+	<string name="menu_timetable">课表查看</string>
+	<string name="menu_course_choose">选课查询</string>
+	<string name="menu_userinfo">个人信息查看</string>
+	<string name="menu_common_query">公共查询</string>
+    
+	<string name="menu_library">图书馆</string>
+	<string name="menu_book_borrow">借阅查询</string>
+	<string name="menu_book_search">书目检索</string>
+	
+	<string name="menu_others">其它</string>
+	<string name="menu_settings">设置</string>
+	<string name="menu_update">检查更新</string>
+	<string name="menu_about">关于东华助手</string>
+	
+	<string name="menu2_title">东华助手</string>
+	
+</resources>

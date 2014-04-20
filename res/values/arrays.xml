@@ -1,0 +1,17 @@
+<resources>
+
+    <string-array name="home_page_items">
+        <item>成绩查询</item>
+        <item>个人成绩单</item>
+        <item>绩点查询</item>
+        <item>考场(补考)查询</item>
+        <item>课表查看</item>
+        <item>选课查询</item>
+        <item>个人信息查看</item>
+        <item>新闻信息</item>
+        <item>检查更新</item>
+        <item>关于程序</item>
+        
+    </string-array>
+
+</resources>

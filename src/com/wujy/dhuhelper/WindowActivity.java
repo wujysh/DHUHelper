@@ -35,9 +35,11 @@ import com.wujy.dhuhelper.view.CheckUpdateScreen;
 import com.wujy.dhuhelper.view.CommonQueryScreen;
 import com.wujy.dhuhelper.view.ExamListScreen;
 import com.wujy.dhuhelper.view.LoginScreen;
+import com.wujy.dhuhelper.view.MeetingInfoScreen;
 import com.wujy.dhuhelper.view.NewsScreen;
 import com.wujy.dhuhelper.view.PointSearchScreen;
 import com.wujy.dhuhelper.view.PreferenceScreen;
+import com.wujy.dhuhelper.view.RunningQueryScreen;
 import com.wujy.dhuhelper.view.ScoreSearchScreen;
 import com.wujy.dhuhelper.view.ScorelistSearchScreen;
 import com.wujy.dhuhelper.view.StudentInfoScreen;
@@ -372,6 +374,9 @@ public abstract class WindowActivity extends SherlockActivity implements OnClick
 		findViewById(R.id.menu_book_borrow).setOnClickListener(this);
 		findViewById(R.id.menu_book_search).setOnClickListener(this);
 		// Others
+        findViewById(R.id.menu_meeting_info).setOnClickListener(this);
+        findViewById(R.id.menu_running_query).setOnClickListener(this);
+
 		findViewById(R.id.menu_settings).setOnClickListener(this);
 		findViewById(R.id.menu_update_check).setOnClickListener(this);
 		findViewById(R.id.menu_about).setOnClickListener(this);
@@ -598,9 +603,37 @@ public abstract class WindowActivity extends SherlockActivity implements OnClick
 			finish();
 			return;
 		}
-		
-		// Others
+
+        // Others
+        if (Globe.isLoginJW || Globe.isLoginLib) {
+            switch (v.getId()) {
+                case R.id.menu_running_query:
+                    it = new Intent(mContext, RunningQueryScreen.class);
+                    break;
+            }
+        } else {
+            it = new Intent(mContext, LoginScreen.class);
+            it.putExtra("where", "JWC");
+            switch (v.getId()) {
+                case R.id.menu_running_query:
+                    it.putExtra("NextScreen", RunningQueryScreen.class);
+                    break;
+                default:
+                    it = null;
+                    break;
+            }
+        }
+        if (it != null) {
+            startActivity(it);
+            finish();
+            return;
+        }
+
 		switch (v.getId()) {
+        case R.id.menu_meeting_info:
+            it = new Intent(mContext, MeetingInfoScreen.class);
+            break;
+
 		case R.id.menu_settings:
 			it = new Intent(mContext, PreferenceScreen.class);
 			startActivityForResult(it, REQ_SYSTEM_SETTINGS);

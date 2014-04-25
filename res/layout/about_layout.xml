@@ -32,14 +32,14 @@
 	        android:id="@+id/about_version"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
-	        android:text="版本 1.5 (417)"
+	        android:text="版本 1.6 (425)"
 	        android:textAppearance="?android:attr/textAppearanceMedium" />
 	
 	    <TextView
 	        android:id="@+id/about_author"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
-	        android:text="©2014 吴嘉晔"
+	        android:text="©2014"
 	        android:textAppearance="?android:attr/textAppearanceMedium" />
 	</LinearLayout>
 

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.wujy.dhuhelper"
-    android:versionCode="418"
-    android:versionName="1.5" >
+    android:versionCode="425"
+    android:versionName="1.6" >
 
     <uses-sdk
         android:minSdkVersion="11"
-        android:targetSdkVersion="18" />
+        android:targetSdkVersion="19" />
 
 	<!-- Push service 运行需要的权限 -->
 	<uses-permission android:name="android.permission.INTERNET"/>
@@ -39,7 +39,7 @@
         <activity android:launchMode="standard" android:name=".view.UserScreen"></activity>
         
         <activity android:launchMode="singleTask" android:name=".view.NewsScreen"></activity>
-        <activity android:launchMode="standard" android:name=".view.WebViewScreen"></activity>
+        <activity android:launchMode="standard" android:name=".view.WebViewScreen" android:exported="true"></activity>
         
         <activity android:launchMode="singleTask" android:name=".view.ScoreSearchScreen"></activity>
         <activity android:launchMode="singleTask" android:name=".view.ScorelistSearchScreen"></activity>
@@ -52,6 +52,9 @@
         
         <activity android:launchMode="singleTask" android:name=".view.BookBorrowScreen"></activity>
         <activity android:launchMode="singleTask" android:name=".view.BookSearchScreen"></activity>
+
+        <activity android:launchMode="singleTask" android:name=".view.MeetingInfoScreen"></activity>
+        <activity android:launchMode="singleTask" android:name=".view.RunningQueryScreen"></activity>
         
         <activity android:launchMode="singleTask" android:name=".view.PreferenceScreen"></activity>
         <activity android:launchMode="singleTask" android:name=".view.CheckUpdateScreen"></activity>

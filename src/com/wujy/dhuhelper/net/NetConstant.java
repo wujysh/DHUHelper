@@ -39,6 +39,9 @@ public interface NetConstant {
 	int BOOK_BORROW = 7500;
 	int BOOK_SEARCH = 7600;
 
+    int RUNNING_LOGIN = 7700;
+    int RUNNING_QUERY = 7800;
+
 	int MSG_NET_LOADING = 10;
 	int MSG_NET_ERROR = 3;
 	int MSG_NONE_NET = 2;
@@ -89,5 +92,11 @@ public interface NetConstant {
 
 	String URL_BOOK_SEARCH = "http://202.120.146.14:8080/opac/search.php";
 	String URL_BOOK_BORROW = "http://202.120.146.14:8080/reader/book_lst.php";
+
+    String URL_MEETING_INFO = "http://www.pupu333.com/forum.php?mod=viewthread&action=printable&tid=112";
+            //http://www.pupu333.com/forum.php?mod=viewthread&tid=112&mobile=yes";
+
+    String URL_RUNNING_LOGIN = "http://218.193.151.40/student/checkUser.jsp";
+    String URL_RUNNING_QUERY = "http://218.193.151.40/student/queryExerInfo.jsp";
 
 }

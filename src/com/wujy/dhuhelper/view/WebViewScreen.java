@@ -50,8 +50,8 @@ public class WebViewScreen extends WindowActivity {
 				Element ele = doc.getElementsByAttributeValue("colspan", "8")
 						.get(0);
 				ele.getElementsByAttributeValue("value", "关闭窗口").remove();
-				webHtml = "<body style=\"font-size:20px\">" + ele.html()
-						+ "</body>";
+				webHtml = "<html><head><meta name=\"viewport\" content=\"target-densitydpi=medium-dpi, width=device-width\"></head><body style=\"font-size:20px\">" + ele.html()
+						+ "</body></html>";
 				webHtml = webHtml.replace("width=\"455\"", "width=\""
 						+ Globe.news_detail_images_width + "\"");
 				webHtml = webHtml.replace("width=\"450\"", "width=\""

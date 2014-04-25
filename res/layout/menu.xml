@@ -487,7 +487,82 @@
 	        android:textAppearance="@android:style/TextAppearance.Medium" />
 	
 	</LinearLayout>
-	
+
+    <!-- 图书馆 -->
+    <LinearLayout
+        android:id="@+id/menu_library"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/row_title"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:gravity="center_vertical|center"
+            android:background="@drawable/btn_group_nomal"
+            android:padding="10dp"
+            android:text="@string/menu_others"
+            android:textAppearance="@android:style/TextAppearance.Small" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/menu_meeting_info"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/menu"
+        android:orientation="horizontal" >
+
+        <ImageView
+            android:id="@+id/menu_icon_meeting_info"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:padding="10dp"
+            android:src="@drawable/ic_action_location_searching" />
+
+        <TextView
+            android:id="@+id/row_title"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:paddingLeft="0dp"
+            android:text="@string/menu_meeting_info"
+            android:textAppearance="@android:style/TextAppearance.Medium" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/menu_running_query"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/menu"
+        android:orientation="horizontal" >
+
+        <ImageView
+            android:id="@+id/menu_icon_running_query"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:padding="10dp"
+            android:src="@drawable/ic_action_location_searching" />
+
+        <TextView
+            android:id="@+id/row_title"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:paddingLeft="0dp"
+            android:text="@string/menu_running_query"
+            android:textAppearance="@android:style/TextAppearance.Medium" />
+
+    </LinearLayout>
+
 	<!-- 其它 -->
 	<LinearLayout
 	    android:id="@+id/menu_others"

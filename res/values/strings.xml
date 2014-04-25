@@ -50,6 +50,9 @@
 	<string name="menu_book_search">书目检索</string>
 	
 	<string name="menu_others">其它</string>
+    <string name="menu_meeting_info">讲座信息</string>
+    <string name="menu_running_query">体锻查询</string>
+
 	<string name="menu_settings">设置</string>
 	<string name="menu_update">检查更新</string>
 	<string name="menu_about">关于东华助手</string>

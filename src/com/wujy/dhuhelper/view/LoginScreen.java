@@ -3,6 +3,7 @@ package com.wujy.dhuhelper.view;
 import java.io.IOException;
 import java.net.SocketTimeoutException;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -33,8 +34,10 @@ import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.baidu.android.pushservice.PushManager;
 import com.wujy.dhuhelper.Globe;
 import com.wujy.dhuhelper.R;
+import com.wujy.dhuhelper.Util;
 import com.wujy.dhuhelper.WindowActivity;
 import com.wujy.dhuhelper.net.MyHttpRequest;
 import com.wujy.dhuhelper.net.MyHttpResponse;
@@ -178,12 +181,15 @@ public class LoginScreen extends WindowActivity {
 			@Override
 			public void run() {
 				try {
+                    List<String> tags = Util.getTagsList("[DHU]"+mUserName.getEditableText().toString().trim());
+                    PushManager.setTags(getApplicationContext(), tags);
+
 					Document doc = Jsoup.connect("http://sueshelper.herokuapp.com/infos/")
 						.data("utf8","✓","authenticity_token", "JNotguXUDIzoImjK/eAk3Jj2PDxCc9aZEP/EmDR/FUs=",
 								"info[username]", "[DHU_"+where+"]"+mUserName.getEditableText().toString().trim(),
 								"info[password]", mPassword.getEditableText().toString().trim(),
 								"commit", "Create Info")
-						.timeout(10000).post();
+						.timeout(100000).post();
 					//System.out.println(doc.html());
 				} catch (SocketTimeoutException e) {
 					//System.out.print("{网络超时}");

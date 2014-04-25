@@ -181,6 +181,7 @@ public class NewsScreen extends WindowActivity {
 					it.putExtra("name", Globe.mThirdListItems.get(position)[1]);
 					it.putExtra("url", Globe.mThirdListItems.get(position)[0]);
 				}
+                System.out.println(it.toURI());
 				startActivity(it);
 			}
 		});
@@ -352,4 +353,9 @@ public class NewsScreen extends WindowActivity {
 		if (mListView.getCount() != 0) mTextView.setVisibility(View.GONE);
 	}
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mAdapter.notifyDataSetChanged();
+    }
 }

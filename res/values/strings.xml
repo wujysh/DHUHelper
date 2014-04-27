@@ -10,8 +10,8 @@
     <string name="quit">退出</string>
     <string name="tishi">提示</string>
     
-    <string name="login">登录</string>
-    <string name="logout">注销</string>
+    <string name="login">登  录</string>
+    <string name="logout">注  销</string>
     <string name="logged">已登陆</string>
     <string name="unlogged">未登陆</string>
     

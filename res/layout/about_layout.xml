@@ -32,7 +32,7 @@
 	        android:id="@+id/about_version"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
-	        android:text="版本 1.6 (425)"
+	        android:text="版本 1.6 (427)"
 	        android:textAppearance="?android:attr/textAppearanceMedium" />
 	
 	    <TextView
@@ -93,7 +93,7 @@
 	        android:id="@+id/about_introduce"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
-	        android:text="        东华助手是一款专为东华大学学生设计的手机软件。为同学查看新闻信息；访问教务、图书馆等系统信息提供便利。未来将进一步连接学校信息门户、财务处、校园邮箱等服务资源，尽最大可能为东华学子的校园生活提供便利。\n\n        注：可免登陆使用新闻信息、图书查询等公开服务；成绩查询等校内服务须登录。"
+	        android:text="        东华助手是一款专为东华人设计的手机应用，通过它可快捷获取学校新闻、教务通知、图书馆藏、讲座安排等服务信息，绑定校内账号后还能轻松查询本人成绩、绩点、课表、考场、图书借阅、晨跑等信息，并能及时接收重要信息推送。未来将进一步完善应用功能，尽最大可能为东华学子的校园生活提供便利。"
 	        android:textAppearance="?android:attr/textAppearanceSmall"
 	        android:textSize="13sp" />
     </ScrollView>

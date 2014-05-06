@@ -135,8 +135,9 @@ public class InitScreen extends WindowActivity {
 				PushConstants.LOGIN_TYPE_API_KEY, "hrw9hwUY54DIbhYOjvd4kMVr");
 				//Util.getMetaValue(InitScreen.this, "api_key"));
 		//List<String> tags = Util.getTagsList(textviewGid.getText().toString());
-		List<String> tags = Util.getTagsList("1.6");
-        PushManager.setTags(getApplicationContext(), tags);
+		List<String> tags1 = Util.getTagsList("1.6.1"), tags2 = Util.getTagsList("1.6,1.5,1.4");
+        PushManager.setTags(getApplicationContext(), tags1);
+        PushManager.delTags(getApplicationContext(), tags2);
 		
 		Intent it = new Intent();
 		it.setClass(this, MonitorService.class);

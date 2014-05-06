@@ -44,8 +44,18 @@ public class MeetingInfoScreen extends WindowActivity {
                 webHtml = ele.html();
 
                 webHtml = webHtml.replace("东华科技部&nbsp; &nbsp; ", "");
-                webHtml = webHtml.replace("【讲座】第十周讲座公示-东华科技部", "");
-                webHtml = "<html><head><meta name=\"viewport\" content=\"target-densitydpi=medium-dpi, width=device-width\"></head><body style=\"font-size:20px\"><h3>PuPu-东华</h3>第十周讲座公示-东华科技部"
+
+                String[] week = {"一","二","三","四","五","六","七","八","九","十","十一","十二","十三","十四","十五","十六","十七","十八","十九","二十"};
+                int week_index = 0;
+                for (int i = 0; i < 20; i++) {
+                    if (webHtml.contains("【讲座】第"+week[i]+"周讲座公示-东华科技部")) {
+                        webHtml = webHtml.replace("【讲座】第"+week[i]+"周讲座公示-东华科技部", "");
+                        week_index = i;
+                        break;
+                    }
+                }
+                webHtml = webHtml.replace("2014-4-20 02:28", "");
+                webHtml = "<html><head><meta name=\"viewport\" content=\"target-densitydpi=medium-dpi, width=device-width\"></head><body style=\"font-size:20px\"><h3>PuPu-东华</h3>第"+week[week_index]+"周讲座公示-东华科技部"
                         + webHtml + "</body></html>";
 
                 //System.out.println(webHtml);

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.sjutas.dhu"
-    android:versionCode="427"
-    android:versionName="1.6" >
+    android:versionCode="506"
+    android:versionName="1.6.1" >
 
     <uses-sdk
         android:minSdkVersion="11"
@@ -53,7 +53,7 @@
         <activity android:launchMode="singleTask" android:name="org.sjutas.dhu.view.BookBorrowScreen"></activity>
         <activity android:launchMode="singleTask" android:name="org.sjutas.dhu.view.BookSearchScreen"></activity>
 
-        <activity android:launchMode="singleTask" android:name="org.sjutas.dhu.view.MeetingInfoScreen"></activity>
+        <activity android:launchMode="singleTask" android:name="org.sjutas.dhu.view.MeetingInfoScreen" android:exported="true"></activity>
         <activity android:launchMode="singleTask" android:name="org.sjutas.dhu.view.RunningQueryScreen"></activity>
         
         <activity android:launchMode="singleTask" android:name="org.sjutas.dhu.view.PreferenceScreen"></activity>

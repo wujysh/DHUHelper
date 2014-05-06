@@ -644,6 +644,7 @@ public abstract class WindowActivity extends SherlockActivity implements OnClick
 			break;
 		}
 		if (it != null) {
+            System.out.println(it.toURI());
 			startActivity(it);
 			finish();
 		}

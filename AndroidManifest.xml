@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.sjutas.dhu"
-    android:versionCode="506"
-    android:versionName="1.6.1" >
+    android:versionCode="715"
+    android:versionName="1.6.5" >
 
     <uses-sdk
         android:minSdkVersion="11"
@@ -61,6 +61,9 @@
         <activity android:launchMode="singleTask" android:name="org.sjutas.dhu.view.AboutScreen"></activity>
         
         <activity android:launchMode="singleTask" android:name="org.sjutas.dhu.monitor.MonitorScreen"></activity>
+
+        <activity android:launchMode="singleInstance" android:name="org.sjutas.dhu.FeedbackScreen"></activity>
+        <activity android:launchMode="singleInstance" android:name="com.baidu.android.feedback.ui.FeedbackActivity"></activity>
         
         <receiver   
     		android:name="org.sjutas.dhu.monitor.BootBroadcast"
@@ -110,6 +113,13 @@
 				<action android:name="com.baidu.android.pushservice.action.notification.CLICK"/>
 			</intent-filter>
 		</receiver>
+        <!-- Feedback的receiver声明 -->
+        <receiver android:name="org.sjutas.dhu.FeedbackReceiver">
+            <intent-filter>
+                <!-- 接收feedback消息 -->
+                <action android:name="com.baidu.android.pushservice.action.FB_MESSAGE" />
+            </intent-filter>
+        </receiver>
 		
 		<!-- push service start -->
 		<!-- 用于接收系统消息以保证 PushService 正常运行 -->
@@ -133,7 +143,12 @@
 			</intent-filter>
 		</receiver>
 		<!-- Push 服务 -->
-		<service android:name="com.baidu.android.pushservice.PushService" android:exported="true" android:process=":push"/>
+        <service android:name="com.baidu.android.pushservice.PushService"
+            android:exported="true"  android:process=":push">
+            <intent-filter >
+                <action android:name="com.baidu.android.pushservice.action.PUSH_SERVICE"/>
+            </intent-filter>
+        </service>
 		
     </application>
 	

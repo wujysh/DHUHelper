@@ -124,6 +124,7 @@ public class NetClient {
 			System.out.println("添加一个请求至temp");
 			mRequestTemp.add(req);
 		} catch (Exception e) {
+            e.printStackTrace();
 		}
 	}
 

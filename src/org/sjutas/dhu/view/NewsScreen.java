@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -19,6 +20,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.sjutas.dhu.Globe;
 import org.sjutas.dhu.R;
@@ -26,6 +28,7 @@ import org.sjutas.dhu.WindowActivity;
 import org.sjutas.dhu.net.MyHttpRequest;
 import org.sjutas.dhu.net.MyHttpResponse;
 import org.sjutas.dhu.net.NetConstant;
+import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
 public class NewsScreen extends WindowActivity {
 	private class ListViewAdapter extends BaseAdapter {
@@ -94,6 +97,7 @@ public class NewsScreen extends WindowActivity {
 	private RadioButton mRadioButton1, mRadioButton2, mRadioButton3;
 	private ImageView mImageView1, mImageView2, mImageView3;
 	private LinearLayout mLinearLayout1, mLinearLayout2, mLinearLayout3;
+    private Button mJwChange, mLibChange;
 
 	@Override
 	public void handResponse(MyHttpResponse myHttpResponse) {
@@ -154,7 +158,7 @@ public class NewsScreen extends WindowActivity {
 	}
 
 	@Override
-	public void onCreate(Bundle savedInstanceState) {
+	public void onCreate(final Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		// overridePendingTransition(R.anim.zoom_enter, R.anim.zoom_exit);
 		setTitle("新闻信息");
@@ -351,6 +355,55 @@ public class NewsScreen extends WindowActivity {
 		}
 		
 		if (mListView.getCount() != 0) mTextView.setVisibility(View.GONE);
+
+        mJwChange = (Button) findViewById(R.id.user_jw_change);
+        mLibChange = (Button) findViewById(R.id.user_lib_change);
+
+        mJwChange.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Globe.sMenuPosX = mScrollView.getScrollX();
+                Globe.sMenuPosY = mScrollView.getScrollY();
+                if (Globe.isLoginJW) {
+                    Globe.isLoginJW = false;
+
+                    // MyHttpRequest req = new
+                    // MyHttpRequest(NetConstant.TYPE_GET,
+                    // NetConstant.URL_LOGOUT_JW, null, true);
+                    // req.setPipIndex(NetConstant.LOGOUT);
+                    // mNetClient.sendRequest(req);
+
+                    Toast.makeText(mContext, "注销成功", Toast.LENGTH_LONG).show();
+                    refreshMenuInfo();
+                } else {
+                    Intent it = new Intent(mContext, LoginScreen.class);
+                    it.putExtra("where", "JWC");
+                    it.putExtra("NextScreen", mContext.getClass());
+                    startActivity(it);
+                    finish();
+                }
+            }
+        });
+
+        mLibChange.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Globe.sMenuPosX = mScrollView.getScrollX();
+                Globe.sMenuPosY = mScrollView.getScrollY();
+                if (Globe.isLoginLib) {
+                    Globe.isLoginLib = false;
+
+                    Toast.makeText(mContext, "注销成功", Toast.LENGTH_LONG).show();
+                    refreshMenuInfo();
+                } else {
+                    Intent it = new Intent(mContext, LoginScreen.class);
+                    it.putExtra("where", "LIB");
+                    it.putExtra("NextScreen", mContext.getClass());
+                    startActivity(it);
+                    finish();
+                }
+            }
+        });
 	}
 
     @Override

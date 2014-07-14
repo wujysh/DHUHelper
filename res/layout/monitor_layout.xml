@@ -3,64 +3,32 @@
     android:layout_height="match_parent"
     android:padding="20dp"  
     android:background="@android:color/white"
-    android:orientation="vertical" >
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/monitor_advanced"
+        android:visibility="gone">
 
     <TextView
         android:id="@+id/monitor_status"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="监控服务状态："
-        android:visibility="gone"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center" >
-
-        <Button
-            android:id="@+id/start_service"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:text="开始监控" />
-
-        <Button
-	        android:id="@+id/stop_service"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:layout_margin="8dp"
-	        android:text="停止监控" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center" >
-        
-	    <CheckBox
-	        android:id="@+id/settings_monitor_autorun"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:layout_margin="8dp"
-	        android:checked="true"
-	        android:text="开机启动且后台运行" />
-
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/monitor_hint1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="关闭以上功能将影响监控效果，请慎重选择！"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
+        android:visibility="visible"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_gravity="center_horizontal"
+        android:autoText="false"
+        android:enabled="true"
+        android:textColor="@color/blue" />
 
     <TextView
         android:id="@+id/monitor_hint2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         android:layout_marginBottom="10dp"
         android:text="请输入监控课程相关信息："
         android:textAppearance="?android:attr/textAppearanceMedium" />
@@ -107,15 +75,20 @@
             android:id="@+id/monitor_hint3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="课程名称："
+            android:text="课程信息："
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <EditText
-            android:id="@+id/settings_monitor_courseName"
+            android:id="@+id/settings_monitor_courseInfo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:ems="10" />
+            android:ems="10"
+            android:enabled="false"
+            android:maxLines="3"
+            android:textIsSelectable="false"
+            android:visibility="visible"
+            android:focusable="false" />
 
         <Button
             android:id="@+id/monitor_confirm_course_info"
@@ -124,19 +97,83 @@
             android:background="@drawable/ic_action_accept" />
 
     </LinearLayout>
-      
-    <Button
-        android:id="@+id/unbind_service"
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Unbind Service"
-        android:visibility="gone" />
+        android:gravity="center" >
+
+        <Button
+            android:id="@+id/start_service"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="开始监控" />
+
+        <Button
+	        android:id="@+id/stop_service"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_margin="8dp"
+	        android:text="停止监控" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center" >
+
+	    <CheckBox
+	        android:id="@+id/settings_monitor_autorun"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_margin="8dp"
+	        android:checked="true"
+	        android:text="开机启动且后台运行" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/monitor_hint1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="关闭以上功能将影响监控效果，请慎重选择！"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textAlignment="center"
+        android:layout_gravity="center_horizontal" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:gravity="center_vertical"
+        android:id="@+id/monitor_basic"
+        android:focusableInTouchMode="true">
 
     <Button
         android:id="@+id/monitor_open_course_page"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:text="打开选课页面" />
-      
-</LinearLayout>  
+        android:text="打开选课页面"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp" />
+
+    <Button
+        android:id="@+id/monitor_open_selected_course"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="查看选课情况"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
+        android:longClickable="false"
+        android:clickable="false" />
+
+    </LinearLayout>
+
+</LinearLayout>

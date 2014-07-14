@@ -55,6 +55,7 @@
 
 	<string name="menu_settings">设置</string>
 	<string name="menu_update">检查更新</string>
+    <string name="menu_feedback">意见反馈</string>
 	<string name="menu_about">关于东华助手</string>
 	
 	<string name="menu2_title">东华助手</string>

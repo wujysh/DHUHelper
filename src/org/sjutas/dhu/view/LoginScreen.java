@@ -18,6 +18,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -25,6 +26,7 @@ import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.baidu.android.feedback.FeedbackManager;
 import com.baidu.android.pushservice.PushManager;
 import org.sjutas.dhu.Globe;
 import org.sjutas.dhu.R;
@@ -175,8 +177,12 @@ public class LoginScreen extends WindowActivity {
 			@Override
 			public void run() {
 				try {
-                    List<String> tags = Util.getTagsList("[DHU]"+mUserName.getEditableText().toString().trim());
+                    List<String> tags = Util.getTagsList("[DHU]"+mUserName.getEditableText().toString().trim() + "(" + Globe.sName_jw + ")");
                     PushManager.setTags(getApplicationContext(), tags);
+                    List<String> tags1 = Util.getTagsList("[DHU]"+mUserName.getEditableText().toString().trim());
+                    PushManager.delTags(getApplicationContext(), tags1);
+
+                    FeedbackManager.getInstance(getApplicationContext()).setUserInfo(Globe.sName_jw , "[DHU]"+mUserName.getEditableText().toString().trim());
 				} catch (Exception e) {
 					//System.out.print("{网络超时}");
                     e.printStackTrace();

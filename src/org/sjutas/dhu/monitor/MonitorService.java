@@ -33,6 +33,8 @@ import org.sjutas.dhu.net.MyHttpRequest;
 import org.sjutas.dhu.net.MyHttpResponse;
 import org.sjutas.dhu.net.NetConstant;
 import org.sjutas.dhu.view.WebViewScreen;
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
 
 public class MonitorService extends Service {
 
@@ -93,7 +95,8 @@ public class MonitorService extends Service {
         // 获取设置信息
         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
 		PreContent = settings.getString("monitor_webpage_content", "");
-		Globe.monitor_auto_startup = settings.getBoolean("monitor_auto_startup", false);
+		Globe.monitor_auto_startup = settings.getBoolean("monitor_auto_startup", true);
+        Globe.monitor_courses_auto_startup = settings.getBoolean("monitor_courses_auto_startup", false);
 		interval = Globe.monitor_refresh_interval = Integer.parseInt(settings.getString("monitor_refresh_interval", "60000"));
 		Globe.monitor_courseNo = Integer.parseInt(settings.getString("monitor_courseNo", "0"));
 		Globe.monitor_courseId = Integer.parseInt(settings.getString("monitor_courseId", "0"));
@@ -140,24 +143,25 @@ public class MonitorService extends Service {
 	        notification_main.setLatestEventInfo(this, monitorScreenContentTitle, monitorScreenContentText, monitorScreenPendingIntent);   
 			//notification_main.defaults = Notification.DEFAULT_ALL;
 	        startForeground(1, notification_main);
-	        
-//	        if (mNetClient == null) {
-//				mNetClient = new MonitorNetClient(this);
-//			}
-//			if (mNetClient.isRunning == false) {
-//				mNetClient.getmRequestTemp().clear();
-//				mNetClient.isRunning = true;
-//				mNetClient.start();
-//			}
-//			mNetClient.setCurrentService(this);
-//			
-//			params.add(new BasicNameValuePair("courseNo", String.valueOf(Globe.monitor_courseNo)));
-//			params.add(new BasicNameValuePair("courseId", String.valueOf(Globe.monitor_courseId)));
-//			params.add(new BasicNameValuePair("courseName", Globe.monitor_courseName));
-//			req = new MyHttpRequest(NetConstant.TYPE_GET, NetConstant.URL_COURSE_SEARCH, params, false);
-//			req.setPipIndex(NetConstant.MONITOR);
-//			
-//			mNetClient.sendRequest(req);
+            Log.d("MonitorService", "startForeground!");
+
+	        if (mNetClient == null) {
+				mNetClient = new MonitorNetClient(this);
+			}
+			if (mNetClient.isRunning == false) {
+				mNetClient.getmRequestTemp().clear();
+				mNetClient.isRunning = true;
+				mNetClient.start();
+			}
+			mNetClient.setCurrentService(this);
+
+			params.add(new BasicNameValuePair("courseNo", String.valueOf(Globe.monitor_courseNo)));
+			params.add(new BasicNameValuePair("courseId", String.valueOf(Globe.monitor_courseId)));
+			params.add(new BasicNameValuePair("courseName", Globe.monitor_courseName));
+			req = new MyHttpRequest(NetConstant.TYPE_GET, NetConstant.URL_COURSE_SEARCH, params, false);
+			req.setPipIndex(NetConstant.MONITOR);
+
+			mNetClient.sendRequest(req);
         }
 
 	}
@@ -172,7 +176,8 @@ public class MonitorService extends Service {
 		Globe.monitor_dhxw = settings.getBoolean("monitor_dhxw", true);
 		Globe.monitor_xngg = settings.getBoolean("monitor_xngg", true);
 		Globe.monitor_jwxx = settings.getBoolean("monitor_jwxx", true);
-		Globe.monitor_scorelist = settings.getBoolean("monitor_scorelist", true);
+		Globe.monitor_scorelist = settings.getBoolean("monitor_scorelist", false);
+        Globe.monitor_courses = settings.getBoolean("monitor_courses", false);
 		
 		SharedPreferences saveCacheSettings = getSharedPreferences("dhuhelper_cache", Context.MODE_MULTI_PROCESS);
 		Globe.sCookieStringAll = saveCacheSettings.getString("CookieStringAll", "");
@@ -218,18 +223,18 @@ public class MonitorService extends Service {
 		if (Globe.monitor_courses || Globe.monitor_scorelist) {
 			if (cookies != null) cookies.clear();
 			
-			Log.i(TAG, "Thread #3|4 cookiesAll: " + Globe.sCookieStringAll);
+			//Log.i(TAG, "Thread #3|4 cookiesAll: " + Globe.sCookieStringAll);
 			if (Globe.sCookieStringAll == "") return START_STICKY;
 			
 			Globe.sCookieString = Globe.sCookieStringAll.split(";");
 			Globe.sCookieStringCnt = Globe.sCookieString.length;
 			
-			Log.i(TAG, "Thread #3|4 cookiesCnt: " + Globe.sCookieStringCnt);
+			//Log.i(TAG, "Thread #3|4 cookiesCnt: " + Globe.sCookieStringCnt);
 			
 			for (int i = 0; i < Globe.sCookieStringCnt; i++) {
 				//Globe.sCookieString[i].replace(";", "");
 				String[] temp = Globe.sCookieString[i].split("=");
-				Log.i(TAG, "Thread #3|4 cookie: " + Globe.sCookieString[i]);
+				//Log.i(TAG, "Thread #3|4 cookie: " + Globe.sCookieString[i]);
 				cookies.put(temp[0], temp[1]);
 			}
 		}
@@ -246,18 +251,18 @@ public class MonitorService extends Service {
 			messageThread_scorelist.isRunning = false;
 		}
         
-//		if (Globe.monitor_courses){
-//			if (messageThread_courses == null) {
-//				messageThread_courses = new MessageThread();
-//				messageThread_courses.url = NetConstant.URL_CJDCX;
-//				messageThread_courses.id = 3;
-//				messageThread_courses.isRunning = true;
-//				messageThread_courses.start();
-//			}
-//		} else if (messageThread_courses != null) {
-//			messageThread_courses.isRunning = false;
-//		}
-		
+		if (Globe.monitor_courses){
+			if (messageThread_courses == null) {
+				messageThread_courses = new MessageThread();
+				messageThread_courses.url = Globe.monitor_url;
+				messageThread_courses.id = 4;
+				messageThread_courses.isRunning = true;
+				messageThread_courses.start();
+			}
+		} else if (messageThread_courses != null) {
+			messageThread_courses.isRunning = false;
+		}
+
 		return START_STICKY;
 	}
 	
@@ -301,7 +306,7 @@ public class MonitorService extends Service {
             		
             		if (timepast >= interval) {
             			String serverMessage;
-            			if (id == 3) {
+            			if (id == 3 || id == 4) {
             				doc = Jsoup.connect(url).cookies(cookies).timeout(10000).get();
             				serverMessage = doc.text();
             			} else {
@@ -374,52 +379,64 @@ public class MonitorService extends Service {
     										saveNewsString += "@";
     										mListItems.add(str);
     									}
-    								}
+    								} else if (id == 4) {
+                                        Elements eles = doc.getElementById("AutoNumber2").select("td");
+
+                                        String max_admit = eles.get(10).text();
+                                        String already_select = eles.get(11).text();
+                                        String already_admit = eles.get(12).text();
+
+                                        saveNewsString = max_admit + "@" + already_select + "@" + already_admit;
+                                    }
     								
     								Log.i(TAG, "Thread #"+id+"(edit) saveNewsString: " + saveNewsString);
-    								
-    								if (saveNewsString.length() > 50 && !saveNewsString.equals(cache_string[id])) {
-    									
-    									if (!firstTime) {
-	    									int maxNotification = 5;// 单次最大通知数
-	    									if (id == 3) {
-	    										maxNotification = mListItems.size();
-	    									} else {
-	    										maxNotification = (mListItems.size() < 5) ? mListItems.size() : 5;
-	    									}
-	    									for (int i = 0; i < maxNotification; i++) {
-	    										String[] mListItem = mListItems.get(i);
-	    										String compareString = "";
-	    										if (id == 3) {
-	    											compareString = mListItem[0] + "#" + mListItem[1] + "#" + mListItem[2] + "#" + mListItem[3];
-	    										} else {
-	    											compareString = mListItem[0];
-	    										}
-	    										
-	    										if (compareString.length() > 20 && !cache_string[id].contains(compareString)) {
-	    											// 显示通知
-	    	    									intent = new Intent(MonitorService.this, WebViewScreen.class);
-	    	    									intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-	    	    									if (id != 3) {
-	    					    						contentTitle = mListItem[1];
-	    					    						intent.putExtra("url", mListItem[0]);
-	    					    						intent.putExtra("name", contentTitle);
-	    	    									} else {
-	    	    										contentTitle = mListItem[0] + "：" + mListItem[3];
-	    	    										intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);// Disable for cookie...
-	    					    						intent.putExtra("url", NetConstant.URL_CJDCX);
-	    					    						intent.putExtra("name", "学生个人成绩单");
-	    					    						intent.putExtra("needCookies", true);  // 学生个人成绩单需要登录
-	    	    									}
-	    	    									pendingIntent = PendingIntent.getActivity(MonitorService.this, notificationID, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-	    			    	                    	notification.tickerText = contentTitle;
-	    			    	                    	notification.when = System.currentTimeMillis();
-	    				    						notification.setLatestEventInfo(MonitorService.this, contentTitle, contentText[id], pendingIntent);
-	    			    	                        notificationManager.notify(notificationID, notification);
-	    			    	                        notificationID++;
-	    										}
-	    									}
-	    								}
+
+    								if ((id == 4 || saveNewsString.length() > 50) && !saveNewsString.equals(cache_string[id])) {
+
+                                        if (id != 4) {
+                                            if (!firstTime) {
+                                                int maxNotification = 5;// 单次最大通知数
+                                                if (id == 3) {
+                                                    maxNotification = mListItems.size();
+                                                } else {
+                                                    maxNotification = (mListItems.size() < 5) ? mListItems.size() : 5;
+                                                }
+                                                for (int i = 0; i < maxNotification; i++) {
+                                                    String[] mListItem = mListItems.get(i);
+                                                    String compareString = "";
+                                                    if (id == 3) {
+                                                        compareString = mListItem[0] + "#" + mListItem[1] + "#" + mListItem[2] + "#" + mListItem[3];
+                                                    } else {
+                                                        compareString = mListItem[0];
+                                                    }
+
+                                                    if (compareString.length() > 20 && !cache_string[id].contains(compareString)) {
+                                                        // 显示通知
+                                                        intent = new Intent(MonitorService.this, WebViewScreen.class);
+                                                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                                        if (id != 3) {
+                                                            contentTitle = mListItem[1];
+                                                            intent.putExtra("url", mListItem[0]);
+                                                            intent.putExtra("name", contentTitle);
+                                                        } else {
+                                                            contentTitle = mListItem[0] + "：" + mListItem[3];
+                                                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);// Disable for cookie...
+                                                            intent.putExtra("url", NetConstant.URL_CJDCX);
+                                                            intent.putExtra("name", "学生个人成绩单");
+                                                            intent.putExtra("needCookies", true);  // 学生个人成绩单需要登录
+                                                        }
+                                                        pendingIntent = PendingIntent.getActivity(MonitorService.this, notificationID, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+                                                        notification.tickerText = contentTitle;
+                                                        notification.when = System.currentTimeMillis();
+                                                        notification.setLatestEventInfo(MonitorService.this, contentTitle, contentText[id], pendingIntent);
+                                                        notificationManager.notify(notificationID, notification);
+                                                        notificationID++;
+                                                    }
+                                                }
+                                            }
+                                        } else {
+
+                                        }
     									
     									synchronized (MonitorService.class) {
 	    									// 保存缓存
@@ -449,6 +466,10 @@ public class MonitorService extends Service {
 			    								edit.putString("cache_scorelist", cache[id]);
 			    								edit.putString("cache_scorelist_string", cache_string[id]);
 			    								break;
+                                            case 4:
+                                                edit.putString("cache_courses", cache[id]);
+                                                edit.putString("cache_courses_string", cache_string[id]);
+                                                break;
 			    							}
 			    	                        edit.commit();
     									}
@@ -488,6 +509,9 @@ public class MonitorService extends Service {
 	//									Globe.cache_scorelist_time = cache_last_update_time[id];
 										edit.putLong("cache_scorelist_time", cache_last_update_time[id]);
 										break;
+                                    case 4:
+                                        edit.putLong("cache_courses_time", cache_last_update_time[id]);
+                                        break;
 									}
 			                        edit.commit();
 			                        
@@ -623,6 +647,9 @@ public class MonitorService extends Service {
 		if (messageThread_scorelist != null) {
 			messageThread_scorelist.isRunning = false;
 		}
+        if (messageThread_courses != null) {
+            messageThread_courses.isRunning = false;
+        }
 	}
 
 	@Override

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="bd_fb_feedback">用户反馈</string>
+    <string name="bd_fb_input_content">输入内容</string>
+    <string name="bd_fb_send">发送</string>
+    <string name="bd_fb_hint_text">%s好！欢迎您给我们提出宝贵的建议。</string>
+    <string name="bd_fb_hint_text_default_name">您</string>
+    <string name="bd_fb_net_fail_toast">请检查网络</string>
+
+    <string name="bd_fb_text_onoff_push">使用Push</string>
+    <string name="bd_fb_text_user_name_hint">用户名：</string>
+    <string name="bd_fb_text_user_contact_hint">联系方式：</string>
+    <string name="bd_fb_text_submit_info">提交用户信息</string>
+    <string name="bd_fb_text_start_fb_activity">启动用户反馈界面</string>
+    <string name="bd_fb_text_nofity_hint">您的反馈有新回复</string>
+    <string name="bd_fb_user_info_set_ok">用户信息设置完成</string>
+</resources>

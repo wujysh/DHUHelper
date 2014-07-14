@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.actionbarsherlock.view.Menu;
+import com.baidu.android.feedback.FeedbackManager;
 import com.baidu.android.pushservice.PushConstants;
 import com.baidu.android.pushservice.PushManager;
 import org.sjutas.dhu.Globe;
@@ -135,10 +136,12 @@ public class InitScreen extends WindowActivity {
 				PushConstants.LOGIN_TYPE_API_KEY, "hrw9hwUY54DIbhYOjvd4kMVr");
 				//Util.getMetaValue(InitScreen.this, "api_key"));
 		//List<String> tags = Util.getTagsList(textviewGid.getText().toString());
-		List<String> tags1 = Util.getTagsList("1.6.1"), tags2 = Util.getTagsList("1.6,1.5,1.4");
+		List<String> tags1 = Util.getTagsList("1.6.5"), tags2 = Util.getTagsList("1.7,1.6.1,1.6,1.5");
         PushManager.setTags(getApplicationContext(), tags1);
         PushManager.delTags(getApplicationContext(), tags2);
-		
+
+        FeedbackManager.getInstance(getApplicationContext()).register("hrw9hwUY54DIbhYOjvd4kMVr");
+
 		Intent it = new Intent();
 		it.setClass(this, MonitorService.class);
 		it.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

@@ -64,7 +64,7 @@ public class TimeTableScreen extends WindowActivity {
 				android.view.ViewGroup.LayoutParams.FILL_PARENT));
 
 		setSlidingMenu();
-		menu.setTouchModeAbove(SlidingMenu.TOUCHMODE_MARGIN);
+		//menu.setTouchModeAbove(SlidingMenu.TOUCHMODE_MARGIN);
 
 		mWebView.setWebViewClient(new WebViewClient() {
 

@@ -54,11 +54,13 @@ public class Globe {
 	public static boolean autologin_jw = false;
 	public static boolean autologin_lib = false;
 
-	public static boolean monitor_auto_startup = false;
+	public static boolean monitor_auto_startup = true;
+    public static boolean monitor_courses_auto_startup = false;
 	public static int monitor_refresh_interval = 60000;
 	public static int monitor_courseNo = 0;
 	public static int monitor_courseId = 0;
 	public static String monitor_courseName = "";
+    public static String monitor_url = "";
 	public static boolean monitor_auto_select_when_available = false;
 	public static boolean monitor_courses = false;
 	
@@ -76,4 +78,7 @@ public class Globe {
 	public static long cache_news_xngg_time = 0;
 	public static long cache_news_jwxx_time = 0;
 	public static long cache_scorelist_time = 0;
+
+    public static String push_userId = "";
+    public static String push_channelId = "";
 }

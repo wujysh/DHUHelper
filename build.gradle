@@ -3,11 +3,12 @@ apply plugin: 'android'
 dependencies {
     compile fileTree(dir: 'libs', include: '*.jar')
     compile project(':slidingmenu')
+    compile files('libs/feedback-1.0.jar')
 }
 
 android {
     compileSdkVersion 19
-    buildToolsVersion '19.0.0'
+    buildToolsVersion '19.1.0'
 
     sourceSets {
         main {

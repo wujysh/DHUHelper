@@ -21,6 +21,7 @@ import android.widget.Toast;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
+import com.baidu.android.feedback.FeedbackManager;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import org.sjutas.dhu.monitor.MonitorScreen;
 import org.sjutas.dhu.net.MyHttpResponse;
@@ -56,7 +57,9 @@ public abstract class WindowActivity extends SherlockActivity implements OnClick
 
 	public SlidingMenu menu;
 	public ScrollView mScrollView;
-	public TextView mUserInfoTextView;
+	//public TextView mUserInfoTextView;
+    public TextView mJwInfo, mJwStatus, mLibInfo, mLibStatus;
+    public Button mJwChange, mLibChange;
 
 	boolean isfinished = false;
 	// private Dialog mNetLoadingDialog;
@@ -327,8 +330,8 @@ public abstract class WindowActivity extends SherlockActivity implements OnClick
 		// configure the SlidingMenu
 		menu = new SlidingMenu(this);
 		menu.setMode(SlidingMenu.LEFT_RIGHT);
-		//menu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
-		menu.setTouchModeAbove(SlidingMenu.TOUCHMODE_MARGIN);
+		menu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
+		//menu.setTouchModeAbove(SlidingMenu.TOUCHMODE_MARGIN);
 		
 		menu.setMenu(R.layout.menu);
 		menu.setSecondaryMenu(R.layout.menu2);
@@ -377,10 +380,9 @@ public abstract class WindowActivity extends SherlockActivity implements OnClick
 
 		findViewById(R.id.menu_settings).setOnClickListener(this);
 		findViewById(R.id.menu_update_check).setOnClickListener(this);
+        findViewById(R.id.menu_feedback).setOnClickListener(this);
 		findViewById(R.id.menu_about).setOnClickListener(this);
-		
-		TextView mJwInfo, mJwStatus, mLibInfo, mLibStatus;
-		Button mJwChange, mLibChange;
+
 		mJwInfo = (TextView) findViewById(R.id.user_jw_info);
 		mLibInfo = (TextView) findViewById(R.id.user_lib_info);
 		mJwStatus = (TextView) findViewById(R.id.user_jw_status);
@@ -404,6 +406,7 @@ public abstract class WindowActivity extends SherlockActivity implements OnClick
 					Toast.makeText(mContext, "注销成功", Toast.LENGTH_LONG).show();
 					//it = new Intent(mContext, UserScreen.class);
 					it = new Intent(mContext, NewsScreen.class);
+                    //it.putExtra("RadioChecked", '0');
 				} else {
 					it = new Intent(mContext, LoginScreen.class);
 					it.putExtra("where", "JWC");
@@ -412,8 +415,8 @@ public abstract class WindowActivity extends SherlockActivity implements OnClick
 				}
 				Globe.sMenuPosX = mScrollView.getScrollX();
 				Globe.sMenuPosY = mScrollView.getScrollY();
-				startActivity(it);
-				finish();
+                startActivity(it);
+                finish();
 			}
 		});
 
@@ -427,6 +430,7 @@ public abstract class WindowActivity extends SherlockActivity implements OnClick
 					Toast.makeText(mContext, "注销成功", Toast.LENGTH_LONG).show();
 					//it = new Intent(mContext, UserScreen.class);
 					it = new Intent(mContext, NewsScreen.class);
+                    //it.putExtra("RadioChecked", '0');
 				} else {
 					it = new Intent(mContext, LoginScreen.class);
 					it.putExtra("where", "LIB");
@@ -440,30 +444,34 @@ public abstract class WindowActivity extends SherlockActivity implements OnClick
 			}
 		});
 
-		if (Globe.isLoginJW) {
-			mJwChange.setText(R.string.logout);
-			mJwStatus.setText(R.string.logged);
-			mJwInfo.setText("学号：" + Globe.sId_jw + "\n姓名：" + Globe.sName_jw);
-		} else {
-			mJwChange.setText(R.string.login);
-			mJwStatus.setText(R.string.unlogged);
-			mJwInfo.setText("校内服务需要登陆");
-		}
-
-		if (Globe.isLoginLib) {
-			mLibChange.setText(R.string.logout);
-			mLibStatus.setText(R.string.logged);
-			mLibInfo.setText("学号：" + Globe.sId_lib + "\n姓名：" + Globe.sName_lib
-					+ "\n" + Globe.sMsg_lib);
-		} else {
-			mLibChange.setText(R.string.login);
-			mLibStatus.setText(R.string.unlogged);
-			mLibInfo.setText("校内服务需要登陆");
-		}
-
-		
+        refreshMenuInfo();
 	}
-	
+
+    public void refreshMenuInfo() {
+        if (Globe.isLoginJW) {
+            mJwChange.setText(R.string.logout);
+            mJwStatus.setText(R.string.logged);
+            mJwInfo.setText("学号：" + Globe.sId_jw + "\n姓名：" + Globe.sName_jw);
+        } else {
+            mJwChange.setText(R.string.login);
+            mJwStatus.setText(R.string.unlogged);
+            mJwInfo.setText("校内服务需要登陆");
+        }
+
+        if (Globe.isLoginLib) {
+            mLibChange.setText(R.string.logout);
+            mLibStatus.setText(R.string.logged);
+            mLibInfo.setText("学号：" + Globe.sId_lib + "\n姓名：" + Globe.sName_lib
+                    + "\n" + Globe.sMsg_lib);
+        } else {
+            mLibChange.setText(R.string.login);
+            mLibStatus.setText(R.string.unlogged);
+            mLibInfo.setText("校内服务需要登陆");
+        }
+    }
+
+
+
 	@Override
 	public void onClick(View v) {
 		Intent it = null;
@@ -512,13 +520,13 @@ public abstract class WindowActivity extends SherlockActivity implements OnClick
 				break;
 			case R.id.menu_course_choose:
 				// TODO: Finish course choose activity
-				Toast.makeText(mContext, Messages.getString("WindowActivity.developing"), //$NON-NLS-1$
-						Toast.LENGTH_LONG).show();
+				//Toast.makeText(mContext, Messages.getString("WindowActivity.developing"), //$NON-NLS-1$
+				//		Toast.LENGTH_LONG).show();
 				it = new Intent(mContext, MonitorScreen.class);
-				startActivity(it);
+				//startActivity(it);
 				//it = new Intent(mContext, MonitorScreen.class);
-				//break;
-				return;
+				break;
+				//return;
 			case R.id.menu_userinfo:
 				it = new Intent(mContext, StudentInfoScreen.class);
 				break;
@@ -547,13 +555,14 @@ public abstract class WindowActivity extends SherlockActivity implements OnClick
 				break;
 			case R.id.menu_course_choose:
 				// TODO: Finish course choose activity
-				Toast.makeText(mContext, Messages.getString("WindowActivity.developing"), //$NON-NLS-1$
-						Toast.LENGTH_LONG).show();
-				it = new Intent(mContext, MonitorScreen.class);
-				startActivity(it);
+				//Toast.makeText(mContext, Messages.getString("WindowActivity.developing"), //$NON-NLS-1$
+				//		Toast.LENGTH_LONG).show();
+                it.putExtra("NextScreen", MonitorScreen.class);
+				//it = new Intent(mContext, MonitorScreen.class);
+				//startActivity(it);
 				//it.putExtra("NextScreen", MonitorScreen.class);
-				//break;
-				return;
+				break;
+				//return;
 			case R.id.menu_userinfo:
 				it.putExtra("NextScreen", StudentInfoScreen.class);
 				break;
@@ -639,6 +648,10 @@ public abstract class WindowActivity extends SherlockActivity implements OnClick
 		case R.id.menu_update_check:
 			it = new Intent(mContext, CheckUpdateScreen.class);
 			break;
+        case R.id.menu_feedback:
+            //it = new Intent(mContext, FeedbackScreen.class);
+            FeedbackManager.getInstance(this).startFeedbackActivity();
+            return;
 		case R.id.menu_about:
 			it = new Intent(mContext, AboutScreen.class);
 			break;
@@ -710,7 +723,7 @@ public abstract class WindowActivity extends SherlockActivity implements OnClick
 		super.onResume();
 		
 		setGlobeSettings();
-		
+
 		if (mScrollView != null) {
 			mScrollView.post(new Runnable() {
 				@Override
@@ -748,7 +761,9 @@ public abstract class WindowActivity extends SherlockActivity implements OnClick
 			Globe.autologin_lib = settings.getBoolean("autologin_lib", false);
 
 			Globe.monitor_auto_startup = settings.getBoolean(
-					"monitor_auto_startup", false);
+					"monitor_auto_startup", true);
+            Globe.monitor_courses_auto_startup = settings.getBoolean(
+                    "monitor_courses_auto_startup", false);
 			Globe.monitor_refresh_interval = Integer.parseInt(settings
 					.getString("monitor_refresh_interval", "60000"));
 			Globe.monitor_courseNo = Integer.parseInt(settings.getString(

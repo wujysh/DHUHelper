@@ -32,7 +32,7 @@
 	        android:id="@+id/about_version"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
-	        android:text="版本 1.6.1 (506)"
+	        android:text="版本 1.7 (530)"
 	        android:textAppearance="?android:attr/textAppearanceMedium" />
 	
 	    <TextView

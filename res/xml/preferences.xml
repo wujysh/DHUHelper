@@ -22,7 +22,8 @@
         	<CheckBoxPreference android:key="autologin_lib" android:title="自动登录" android:summaryOn="开启" android:summaryOff="关闭" android:defaultValue="false" />
         </PreferenceCategory>
     </PreferenceScreen>
-    
+
+    <!--
     <PreferenceScreen android:title="选课监控" android:summary="进入设定课程信息，当有空额时会提醒您">
     	
     	<CheckBoxPreference android:key="monitor_courses" android:title="启用选课监控" android:summaryOff="关闭" android:summaryOn="开启" android:defaultValue="false" android:disableDependentsState="false"/><EditTextPreference android:key="monitor_refresh_interval" android:summary="设置检测间隔时间(ms)（默认：60000）" android:title="监控的时间间隔" android:defaultValue="60000" android:dependency="monitor_courses"/><EditTextPreference
@@ -37,14 +38,17 @@
         	android:summary="点击输入" android:dependency="monitor_courses"/>
     	<EditTextPreference android:key="monitor_courseName" android:title="监控的课程名称" android:summary="点击输入" android:dependency="monitor_courses"/>
         <CheckBoxPreference android:key="monitor_auto_select_when_available" android:title="发现空额自动选" android:defaultValue="false" android:summaryOff="监控课程有空额时提醒您选课" android:summaryOn="监控课程有空额时自动选课" android:dependency="monitor_courses"/>
-        
-        
-        
-    </PreferenceScreen><PreferenceScreen android:title="信息推送" android:summary="进入选择推送栏目，当有新消息会通知您">
+
+    </PreferenceScreen>
+    -->
+
+    <PreferenceScreen android:title="信息推送" android:summary="进入选择推送栏目，当有新消息会通知您">
         <CheckBoxPreference android:title="东华新闻" android:key="monitor_dhxw" android:defaultValue="true" android:summaryOff="关闭" android:summaryOn="开启"/>
         <CheckBoxPreference android:title="校内公告" android:key="monitor_xngg" android:defaultValue="true" android:summaryOff="关闭" android:summaryOn="开启"/>
         <CheckBoxPreference android:title="教务信息" android:key="monitor_jwxx" android:defaultValue="true" android:summaryOff="关闭" android:summaryOn="开启"/>
         <CheckBoxPreference android:title="学生个人成绩单" android:key="monitor_scorelist" android:defaultValue="false" android:summary="请确保已登录教务处，否则开启无效"/>
-    </PreferenceScreen><CheckBoxPreference android:key="monitor_auto_startup" android:title="允许助手后台自动运行" android:defaultValue="true" android:summaryOff="打开助手后，才启动监控服务" android:summaryOn="后台自动运行，监控推送效果较好" />
+    </PreferenceScreen>
+
+    <CheckBoxPreference android:key="monitor_auto_startup" android:title="允许助手后台自动运行" android:defaultValue="true" android:summaryOff="打开助手后，才启动监控服务" android:summaryOn="后台自动运行，监控推送效果较好" />
     
 </PreferenceScreen>

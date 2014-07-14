@@ -30,7 +30,8 @@ public interface NetConstant {
 
 	int XKCX_HOMEPAGE = 4000; // 选课
 	int XKCX_INFO = 4001;
-	int MONITOR = 4002;
+    int XKCX_SEARCH = 4002;
+	int MONITOR = 4003;
 
 	int INFO_HOMEPAGE = 5000; // 个人信息查看
 	int LOGIN = 1000; // 登录
@@ -85,12 +86,12 @@ public interface NetConstant {
 
 	String URL_COMMON_QUERY = "http://jw.dhu.edu.cn/dhu/commonquery/";
 
-	String URL_COURSE_CHOOSE = "http://jw.dhu.edu.cn/dhu/student/selectcourse/selectcourse.jsp";
+	//String URL_COURSE_CHOOSE = "http://jw.dhu.edu.cn/dhu/student/selectcourse/selectcourse.jsp";
+    String URL_COURSE_CHOOSE = "http://jw.dhu.edu.cn/dhu/student/selectcourse/selectCourse_ts.jsp";
 	String URL_COURSE_SELECTED = "http://jw.dhu.edu.cn/dhu/student/selectcourse/seeselectedcourse.jsp";
 	// String URL_COURSE_SEARCH =
 	// "http://hi.baidu.com/wujysh/item/85d9da8f4e6f825d27ebd957";
 	String URL_COURSE_SEARCH = "http://jw.dhu.edu.cn/dhu/student/selectcourse/selectcourse2.jsp";
-	String URL_MONITOR = "http://jw.dhu.edu.cn/dhu/commonquery/coursetimetableinfo.jsp?courseId=130143&courseName=%B2%D9%D7%F7%CF%B5%CD%B3%D4%AD%C0%ED";
 
 	String URL_BOOK_SEARCH = "http://202.120.146.14:8080/opac/search.php";
 	String URL_BOOK_BORROW = "http://202.120.146.14:8080/reader/book_lst.php";

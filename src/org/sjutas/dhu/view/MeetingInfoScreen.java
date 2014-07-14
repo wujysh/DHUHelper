@@ -46,10 +46,17 @@ public class MeetingInfoScreen extends WindowActivity {
                 webHtml = webHtml.replace("东华科技部&nbsp; &nbsp; ", "");
 
                 String[] week = {"一","二","三","四","五","六","七","八","九","十","十一","十二","十三","十四","十五","十六","十七","十八","十九","二十"};
+                String[] week2 = {"1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20"};
+
                 int week_index = 0;
                 for (int i = 0; i < 20; i++) {
                     if (webHtml.contains("【讲座】第"+week[i]+"周讲座公示-东华科技部")) {
                         webHtml = webHtml.replace("【讲座】第"+week[i]+"周讲座公示-东华科技部", "");
+                        week_index = i;
+                        break;
+                    }
+                    if (webHtml.contains("【讲座】第"+week2[i]+"周讲座公示-东华科技部")) {
+                        webHtml = webHtml.replace("【讲座】第"+week2[i]+"周讲座公示-东华科技部", "");
                         week_index = i;
                         break;
                     }
@@ -92,7 +99,6 @@ public class MeetingInfoScreen extends WindowActivity {
 				android.view.ViewGroup.LayoutParams.FILL_PARENT));
 
 		setSlidingMenu();
-		menu.setTouchModeAbove(SlidingMenu.TOUCHMODE_MARGIN);
 
 		mWebView.setWebViewClient(new WebViewClient() {
 
